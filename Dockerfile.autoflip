@@ -113,4 +113,4 @@ RUN bazel build --jobs=8 -c opt --define MEDIAPIPE_DISABLE_GPU=1 \
     mediapipe/examples/desktop/autoflip:run_autoflip
 
 ENV GLOG_logtostderr=1
-ENTRYPOINT ["bazel-bin/mediapipe/examples/desktop/autoflip/run_autoflip", "--calculator_graph_config_file=mediapipe/examples/desktop/autoflip/autoflip_graph.pbtxt"]
+ENTRYPOINT ["taskset" "--cpu-list" "0" "bazel-bin/mediapipe/examples/desktop/autoflip/run_autoflip", "--calculator_graph_config_file=mediapipe/examples/desktop/autoflip/autoflip_graph.pbtxt"]
